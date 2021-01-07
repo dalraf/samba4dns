@@ -24,5 +24,7 @@ if (perguntar("Subir samba no dominio") == "y"):
     subprocess.call(["samba-tool domain join " + dominio + " DC -U " + usuario + "@" + dominio +  "  --dns-backend=BIND9_DLZ --server=" + servidor + "." + dominio], shell=True)
     subprocess.call(["systemctl start samba-ad-dc"], shell=True)
     subprocess.call(["cp named.conf.local /etc/bind"], shell=True)
+    subprocess.call(["chgrp bind /var/lib/samba/bind-dns/named.conf"], shell=True)
+    subprocess.call(["chgrp bind /var/lib/samba/bind-dns"], shell=True)
     subprocess.call(["systemctl restart bind9"], shell=True)
 
