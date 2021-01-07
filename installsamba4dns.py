@@ -10,7 +10,7 @@ def perguntar(texto):
     return(resposta)
 
 if (perguntar("Instalar os pacotes samba") == "y"):
-    subprocess.call(["apt-get install -y krb5-user bind9 samba"], shell=True)
+    subprocess.call(["apt-get install -y krb5-user dig bind9 samba"], shell=True)
 
 if (perguntar("Configurar tzdata") == "y"):
     subprocess.call(["dpkg-reconfigure tzdata"], shell=True)
@@ -19,6 +19,7 @@ if (perguntar("Subir samba no dominio") == "y"):
     dominio = str(input("Digite o nome do dominio(Ex: cooperativa.local):"))
     usuario = str(input("Digite o nome do usuario administrador:"))
     servidor = str(input("Digite o nome do servidor para ingressar:"))
+    subprocess.call(["systemctl unmask samba-ad-dc"], shell=True)
     subprocess.call(["systemctl enable samba-ad-dc"], shell=True)
     subprocess.call(["samba-tool domain join " + dominio + " DC -U " + usuario + "@" + dominio +  "  --dns-backend=BIND9_DLZ --server=" + servidor + "." + dominio], shell=True)
     subprocess.call(["systemctl start samba-ad-dc"], shell=True)
