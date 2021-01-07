@@ -19,7 +19,7 @@ if (perguntar("Subir samba no dominio") == "y"):
     dominio = str(input("Digite o nome do dominio(Ex: cooperativa.local):"))
     usuario = str(input("Digite o nome do usuario administrador:"))
     subprocess.call(["systemctl enable samba-ad-dc"], shell=True)
-    subprocess.call(["samba-tool domain join " + dominio + " DC -U " + usuario + "@" + dominio +  "--dns-backend=BIND9_DLZ"], shell=True)
+    subprocess.call(["samba-tool domain join " + dominio + " DC -U " + usuario + "@" + dominio +  "  --dns-backend=BIND9_DLZ"], shell=True)
     subprocess.call(["systemctl start samba-ad-dc"], shell=True)
     subprocess.call(["cp named.conf.local /etc/bind"], shell=True)
     subprocess.call(["systemctl restart bind9"], shell=True)
