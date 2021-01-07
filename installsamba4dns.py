@@ -10,7 +10,7 @@ def perguntar(texto):
     return(resposta)
 
 if (perguntar("Instalar os pacotes samba") == "y"):
-    subprocess.call(["apt-get install -y krb5-user bind9 samba"], shell=True)
+    subprocess.call(["apt-get install -y krb5-user bind9 samba winbind"], shell=True)
 
 if (perguntar("Configurar tzdata") == "y"):
     subprocess.call(["dpkg-reconfigure tzdata"], shell=True)
