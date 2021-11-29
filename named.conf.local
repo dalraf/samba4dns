@@ -6,7 +6,7 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 
-include "/var/lib/samba/private/named.conf";
+include "/var/lib/samba/bind-dns/named.conf";
 
 zone sisbr.coop.br {
 	type forward;
